@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Значение счётчика: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="On0-RR-3MT" userLabel="counter Label View">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Значение счётчика: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="On0-RR-3MT" userLabel="counterLabel">
                                 <rect key="frame" x="8" y="218" width="377" height="28.666666666666657"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <nil key="textColor"/>
@@ -42,7 +42,7 @@
                                             <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="57"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="buttonIncreaseTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cen-Kt-1Pv"/>
+                                            <action selector="didTapIncreaseButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cen-Kt-1Pv"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="bottom" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fq-nT-zRT">
@@ -60,7 +60,7 @@
                                             <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="57"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="buttonDecreaseTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ze6-5j-zi5"/>
+                                            <action selector="didTapDecreaseButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ze6-5j-zi5"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -90,7 +90,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="55"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="buttonResetTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="voo-qH-RDv"/>
+                                    <action selector="didTapResetButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="voo-qH-RDv"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="История изменений: " textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="g6D-Tc-q3L">
@@ -121,7 +121,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="CounterLabelView" destination="On0-RR-3MT" id="5h2-4C-GoY"/>
+                        <outlet property="counterLabel" destination="On0-RR-3MT" id="rPC-6U-wRZ"/>
                         <outlet property="decreaseButton" destination="6fq-nT-zRT" id="JiS-dT-mnB"/>
                         <outlet property="historyTextView" destination="g6D-Tc-q3L" id="Eyw-D4-mrH"/>
                         <outlet property="increaseButton" destination="H8v-4f-dO9" id="E5c-hU-3nS"/>
