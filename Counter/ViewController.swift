@@ -23,10 +23,21 @@ final class ViewController: UIViewController {
         }
     }
 
+    // MARK: - Constants
+    let counterKey: String = "counterKey"
+    private let logArrayKey: String = "savedLogMsgKey"
+    private var logArray: [String] = []
+
+    // MARK: - Enums
+    enum Action: Int {
+        case increment
+        case reset
+        case decrement
+    }
+
     // MARK: - IBActions
     @IBAction private func didTapIncreaseButton(_ sender: UIButton) {
-        counter += 1
-        addTextToHistory(text: "значение изменено на +1")
+        updateCounter(action: .increment)
     }
 
     @IBAction private func didTapDecreaseButton(_ sender: UIButton) {
@@ -36,25 +47,53 @@ final class ViewController: UIViewController {
             )
             return
         }
-        counter -= 1
-        addTextToHistory(text: "значение изменено на -1")
+        updateCounter(action: .decrement)
     }
     
     @IBAction private func didTapResetButton(_ sender: UIButton) {
-        counter = 0
-        addTextToHistory(text: "значение сброшено")
+        updateCounter(action: .reset)
+    }
+
+    // MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        counter = UserDefaults.standard.integer(forKey: counterKey)
+
+        logArray = UserDefaults.standard.stringArray(forKey: logArrayKey) ?? Array()
+        historyTextView.text = logArray.joined(separator: "\n")
     }
 
     // MARK: - Private Methods
     private func addTextToHistory(text: String) {
         let currentDate = Date().currentDateAsString()
-        historyTextView.text.append("\n\(currentDate): \(text)")
-        
+        let message = "\n\(currentDate): \(text)"
+
+        historyTextView.text.append(message)
+        logArray.append(message)
+        UserDefaults.standard.set(logArray, forKey: logArrayKey)
+
         let bottom = NSRange(
             location: historyTextView.text.count - 1,
             length: 1
         )
         historyTextView.scrollRangeToVisible(bottom)
+    }
+
+    private func updateCounter(action: Action) {
+        switch action {
+        case .increment:
+            counter += 1
+            addTextToHistory(text: "значение изменено на +1")
+        case .reset:
+            counter = 0
+            addTextToHistory(text: "значение сброшено")
+        case .decrement:
+            counter -= 1
+            addTextToHistory(text: "значение изменено на -1")
+        }
+
+        UserDefaults.standard.set(counter, forKey: counterKey)
+
     }
 }
 
@@ -65,3 +104,4 @@ final class ViewController: UIViewController {
         withIdentifier: "ViewController"
     )
 }
+
